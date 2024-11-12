@@ -1,0 +1,131 @@
+@import url(https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.css);
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=accessibility,change_history,restart_alt,target,weight);
+
+.material-symbols-outlined { font-size: 20px; }
+
+body {
+  line-height: 1.5;
+  padding: 32px;
+}
+
+h1, h2 {
+  line-height: 1;
+  margin: 0;
+}
+
+h1 { font-size: 32px; }
+h2 { font-size: 28px; }
+
+p { font-size: 16px; }
+
+.c-main {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 128px);
+  margin: auto;
+  width: 1024px;
+}
+
+.c-main__header {
+  border: 1px solid black;
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 1;
+  padding: 16px;
+}
+
+.c-main__input {
+  border: 1px solid black;
+  grid-column: 1 / span 2;
+  grid-row: 2 / span 2;
+  padding: 16px;
+}
+
+.c-main__output {
+  border: 1px solid black;
+  grid-column: 3 / span 3;
+  grid-row: 1 / span 3;
+  padding: 16px;
+}
+
+.c-main__footer {
+  border: 1px solid black;
+  grid-column: 1 / span 5;
+  grid-row: 4 / span 2;
+}
+
+.c-input__head { margin-bottom: 16px; }
+
+.c-form {
+  display: flex;
+  flex-flow: column;
+  gap: 16px;
+}
+
+.c-form__button {
+  display: flex;
+  gap: 16px;
+}
+
+.c-form__number {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+}
+
+.c-label {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.c-field, .c-button {
+  border: 1px solid black;
+  flex-grow: 1;
+  padding: 4px;
+}
+
+.c-button {
+  align-items: center;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.c-output__head { margin-bottom: 16px; }
+
+.c-output__body {
+  border: 1px solid black;
+  height: calc(100% - 3 * 16px);
+  width: 100%;
+}
+
+.c-footer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.c-footer__list--first { border-right: 1px solid black; }
+
+.c-footer__list--last { border-left: 1px solid black; }
+
+.c-list {
+  height: calc(100% - 2 * 16px);
+  overflow: auto;
+  padding: 16px;
+}
+
+.c-list__head {
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.c-list__head > h2 { display: inline-block; }
+
+.c-list__body {
+  margin-top: 16px;
+  padding-left: 16px;
+}

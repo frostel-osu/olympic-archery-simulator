@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olympic Archery Simulator</title>
+  <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+  <script src='main.js'></script>
+</head>
+<body>
+  <main class="c-main">
+    <header class="c-main__header">
+      <h1>Olympic Archery Simulator</h1>
+    </header>
+    <aside class="c-main__input c-input">
+      <h2 class="c-input__head">Inputs</h2>
+      <form class="c-input__body c-form">
+        <label class="c-form__number" for="f-draw-weight" title="Enter a draw weight between 15 and 60 lbs.">
+          <span class="c-label"><span class="material-symbols-outlined">weight</span> Draw Weight (lb)</span>
+          <input class="c-field" id="f-draw-weight" max="60" min="15" name="draw-weight" required type="number" value="15">
+        </label>
+        <label class="c-form__number" for="f-height" title="Enter a height between 4' and 7'.">
+          <span class="c-label"><span class="material-symbols-outlined">accessibility</span> Height (in)</span>
+          <input class="c-field" id="f-height" max="84" min="48" name="height" required type="number" value="64">
+        </label>
+        <label class="c-form__number" for="f-vertical-angle" title="Enter a vertical angle between -90 and 90 degrees.">
+          <span class="c-label"><span class="material-symbols-outlined">change_history</span> Vertical Angle (&deg;)</span>
+          <input class="c-field" id="f-vertical-angle" max="90" min="-90" name="vertical-angle" required type="number" value="0">
+        </label>
+        <div class="c-form__button">
+          <button class="c-button" title="Click to begin the simulation." type="submit">
+            <span class="material-symbols-outlined">target</span> Fire
+          </button>
+          <button class="c-button" title="Click to reset the simulation." type="reset">
+            <span class="material-symbols-outlined">restart_alt</span> Reset
+          </button>  
+        </div>
+      </form>
+    </aside>
+    <article class="c-main__output c-output">
+      <h2 class="c-output__head">Visualization</h2>
+      <canvas class="c-output__body"></canvas>
+    </article>
+    <footer class="c-main__footer c-footer">
+      <details class="c-footer__list--first c-list">
+        <summary class="c-list__head">
+          <h2>Instructions</h2>
+        </summary>
+        <ol class="c-list__body">
+          <li>Enter your height, your desired draw weight, and the angle you want to fire from. The first two values will be saved between runs.</li>
+          <li>When you're ready, click the "Fire" button, and the simulation will begin. Inputs will be disabled while the simulation runs.</li>
+          <li>As the simulation runs, you'll be able to follow your arrow's trajectory in real time, including the maximum height and distance traveled.</li>
+          <li>When the simulation ends, click the "Reset" button to reset the simulation and try a different configuration. The current visualization will be lost.</li>
+        </ol>
+      </details>
+      <details class="c-footer__list--last c-list">
+        <summary class="c-list__head">
+          <h2>Documentation</h2>
+        </summary>
+        <ul class="c-list__body">
+          <li>This app simulates an arrow fired from an Olympic recurve, allowing users to experiment with different setups without worrying about form.</li>
+          <li>The current version accounts for arrow mass, bow efficiency, draw length, draw weight, starting height, and vertical angle.</li>
+          <li>Future versions will account for air resistance (based on temperature, air pressure, and humidity), horizontal angle, and wind speed and direction.</li>
+          <li>I also plan to add a 3D visualization, targets, scoring, and a degree of randomness to better reflect real-world conditions.</li>
+        </ul>
+      </details>
+    </footer>
+  </main>
+</body>
+</html>

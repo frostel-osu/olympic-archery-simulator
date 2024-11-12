@@ -1,0 +1,24 @@
+{
+  "name": "olympic-archery-simulator",
+  "version": "1.0.0",
+  "description": "Simulate the 3D flight path of an arrow fired from an Olympic recurve, accounting for variables such as drag, wind speed, and mass.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frostel-osu/olympic-archery-simulator.git"
+  },
+  "author": "Ellie Frost",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frostel-osu/olympic-archery-simulator/issues"
+  },
+  "homepage": "https://github.com/frostel-osu/olympic-archery-simulator#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "type": "module"
+}
