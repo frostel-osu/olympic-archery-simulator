@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Olympic Archery Simulator</title>
   <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
   <script defer src="main.js" type="module"></script>
 </head>
 <body>
@@ -32,7 +33,7 @@
           <button class="c-button js-button-fire" title="Click to begin the simulation." type="submit">
             <span class="material-symbols-outlined">target</span> Fire
           </button>
-          <button class="c-button js-button-reset" title="Click to reset the simulation." type="reset">
+          <button class="c-button js-button-reset" disabled title="Click to reset the simulation." type="reset">
             <span class="material-symbols-outlined">restart_alt</span> Reset
           </button>
         </div>
@@ -40,7 +41,7 @@
     </aside>
     <article class="c-main__output c-output">
       <h2 class="c-output__head">Visualization</h2>
-      <canvas class="c-output__body"></canvas>
+      <svg class="c-output__body js-visualization"></svg>
     </article>
     <footer class="c-main__footer c-footer">
       <details class="c-footer__list--first c-list">

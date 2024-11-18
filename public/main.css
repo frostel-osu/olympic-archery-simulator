@@ -18,6 +18,11 @@ h2 { font-size: 28px; }
 
 p { font-size: 16px; }
 
+text {
+  font-family: serif;
+  font-size: 16px;
+}
+
 .c-main {
   border: 1px solid black;
   display: grid;
@@ -103,12 +108,24 @@ p { font-size: 16px; }
   justify-content: center;
 }
 
+.c-output { overflow: hidden; }
+
 .c-output__head { margin-bottom: 16px; }
 
 .c-output__body {
-  border: 1px solid black;
   height: calc(100% - 3 * 16px);
+  overflow: visible;
   width: 100%;
+}
+
+.c-axis { text-anchor: middle; }
+
+.c-time { text-anchor: end; }
+
+.c-path {
+  fill: none;
+  stroke: black;
+  stroke-width: 1;
 }
 
 .c-footer {

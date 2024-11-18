@@ -34,11 +34,17 @@ const bound_value = (KEY, value) => {
   }
 };
 
+const m_to_ft = ({ x, y }) => ({
+  x: x * 3.281,
+  y: y * 3.281
+});
+
 const in_to_ft = (n, m = n % 12) => `${(n - m) / 12}'${m ? `${m}"` : ""}`;
 
 export {
   TIME_STEP,
   VALUES,
   bound_value,
+  m_to_ft,
   in_to_ft
 };
