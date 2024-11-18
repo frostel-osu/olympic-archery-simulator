@@ -73,17 +73,26 @@ p { font-size: 16px; }
   gap: 16px;
 }
 
-.c-label {
+.c-input__label {
   align-items: center;
   display: flex;
   gap: 8px;
 }
 
-.c-field, .c-button {
+.c-input__field, .c-button {
   border: 1px solid black;
   flex-grow: 1;
   padding: 4px;
 }
+
+.c-input__field:disabled, .c-button:disabled {
+  background-color: lightgray;
+  border: 1px solid gray;
+  color: gray;
+  cursor: default;
+}
+
+.c-input__text { width: 32px; }
 
 .c-button {
   align-items: center;

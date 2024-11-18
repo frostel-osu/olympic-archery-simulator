@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Olympic Archery Simulator</title>
   <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-  <script src='main.js'></script>
+  <script defer src='main.js'></script>
 </head>
 <body>
   <main class="c-main">
@@ -14,26 +14,27 @@
     </header>
     <aside class="c-main__input c-input">
       <h2 class="c-input__head">Inputs</h2>
-      <form class="c-input__body c-form">
-        <label class="c-form__number" for="f-draw-weight" title="Enter a draw weight between 15 and 60 lbs.">
-          <span class="c-label"><span class="material-symbols-outlined">weight</span> Draw Weight (lb)</span>
-          <input class="c-field" id="f-draw-weight" max="60" min="15" name="draw-weight" required type="number" value="15">
+      <form class="c-input__body c-form js-form-inputs">
+        <label class="c-form__number c-input" for="f-draw-weight" title="Enter a draw weight between 15 and 60 lbs.">
+          <span class="c-input__label"><span class="material-symbols-outlined">weight</span> Draw Weight (lb)</span>
+          <input class="c-input__field js-input-draw-weight" id="f-draw-weight" max="60" min="15" name="draw-weight" required type="number" value="15">
         </label>
-        <label class="c-form__number" for="f-height" title="Enter a height between 4' and 7'.">
-          <span class="c-label"><span class="material-symbols-outlined">accessibility</span> Height (in)</span>
-          <input class="c-field" id="f-height" max="84" min="48" name="height" required type="number" value="64">
+        <label class="c-form__number c-input" for="f-height" title="Enter a height between 4' and 7'.">
+          <span class="c-input__label"><span class="material-symbols-outlined">accessibility</span> Height (in)</span>
+          <input class="c-input__field js-input-height" id="f-height" max="84" min="48" name="height" required type="number" value="64">
+          <span>~</span><span class="c-input__text js-input-height-text">5'4"</span>
         </label>
-        <label class="c-form__number" for="f-vertical-angle" title="Enter a vertical angle between -90 and 90 degrees.">
-          <span class="c-label"><span class="material-symbols-outlined">change_history</span> Vertical Angle (&deg;)</span>
-          <input class="c-field" id="f-vertical-angle" max="90" min="-90" name="vertical-angle" required type="number" value="0">
+        <label class="c-form__number c-input" for="f-vertical-angle" title="Enter a vertical angle between -90 and 90 degrees.">
+          <span class="c-input__label"><span class="material-symbols-outlined">change_history</span> Vertical Angle (&deg;)</span>
+          <input class="c-input__field js-input-vertical-angle" id="f-vertical-angle" max="90" min="-90" name="vertical-angle" required type="number" value="0">
         </label>
         <div class="c-form__button">
-          <button class="c-button" title="Click to begin the simulation." type="submit">
+          <button class="c-button js-button-fire" title="Click to begin the simulation." type="submit">
             <span class="material-symbols-outlined">target</span> Fire
           </button>
-          <button class="c-button" title="Click to reset the simulation." type="reset">
+          <button class="c-button js-button-reset" title="Click to reset the simulation." type="reset">
             <span class="material-symbols-outlined">restart_alt</span> Reset
-          </button>  
+          </button>
         </div>
       </form>
     </aside>
