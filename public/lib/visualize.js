@@ -58,7 +58,8 @@ const visualize = (node, simulation) => {
 
   const trajectory = [];
 
-  const ms = TIME_STEP * 1000;
+  const start = performance.now();
+  const pause = TIME_STEP * 1000;
 
   return new Promise((resolve) => (function step() {
     const next = simulation.next();
@@ -79,7 +80,11 @@ const visualize = (node, simulation) => {
 
     time.text(`${next.value.t.toFixed(2)} s`);
 
-    setTimeout(step, ms);
+    const current = performance.now();
+    const steps = trajectory.length;
+    const delay = pause - (current - (start + steps * pause));
+
+    setTimeout(step, Math.max(delay, 0));
   })());
 };
 
