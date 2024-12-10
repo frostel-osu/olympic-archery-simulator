@@ -11,5 +11,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("\"All is for the best in the best of all possible worlds.\" --Pangloss");
+  console.log("Main program running on port 3000...");
 });

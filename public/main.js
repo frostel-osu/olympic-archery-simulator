@@ -1,8 +1,6 @@
 "use strict";
 
 import { VALUES, bound_value, in_to_ft } from "./lib/utils.js";
-import { simulate } from "./lib/simulate.js";
-import { reset_chart, visualize } from "./lib/visualize.js";
 
 const DOMFormInputs = document.querySelector(".js-form-inputs");
 
@@ -15,6 +13,22 @@ const DOMButtonFire = document.querySelector(".js-button-fire");
 const DOMButtonReset = document.querySelector(".js-button-reset");
 
 const DOMVisualization = document.querySelector(".js-visualization");
+
+const rect = DOMVisualization.getBoundingClientRect();
+
+const start_visualization = (draw_weight_lb, height_in, vertical_angle_deg) => {
+  DOMVisualization.contentWindow.postMessage({
+    type: "start",
+    data: { draw_weight_lb, height_in, rect, vertical_angle_deg }
+  }, "http://localhost:3003");
+};
+
+const reset_visualization = () => {
+  DOMVisualization.contentWindow.postMessage({
+    type: "reset",
+    data: { rect }
+  }, "http://localhost:3003");
+};
 
 const reset_inputs = () => {
   DOMInputDrawWeight.value = localStorage.oas_draw_weight;
@@ -34,8 +48,10 @@ const disable_inputs = (bool = true) => {
 localStorage.oas_draw_weight = localStorage.oas_draw_weight || VALUES.WEIGHT.DEFAULT;
 localStorage.oas_height = localStorage.oas_height || VALUES.HEIGHT.DEFAULT;
 
-reset_chart(DOMVisualization);
-reset_inputs();
+DOMVisualization.addEventListener("load", () => {
+  reset_visualization();
+  reset_inputs();  
+});
 
 DOMInputDrawWeight.addEventListener("change", ({ target: input }) => {
   input.value = bound_value("WEIGHT", input.value);
@@ -53,23 +69,28 @@ DOMInputVerticalAngle.addEventListener("change", ({ target: input }) => {
   input.value = bound_value("VERTICAL_ANGLE", input.value);
 });
 
+window.addEventListener("message", ({ data: { type } }) => {
+  switch (type) {
+    case "done":
+      DOMButtonReset.disabled = false;
+      break;
+  }
+});
+
 DOMButtonFire.addEventListener("click", async (event) => {
   event.preventDefault();
 
   const form = new FormData(DOMFormInputs);
-  const simulation = simulate(form);
 
   disable_inputs();
 
-  await visualize(DOMVisualization, simulation());
-
-  DOMButtonReset.disabled = false;
+  start_visualization(form.get("draw-weight"), form.get("height"), form.get("vertical-angle"));
 });
 
 DOMButtonReset.addEventListener("click", (event) => {
   event.preventDefault();
 
-  reset_chart(DOMVisualization);
+  reset_visualization();
   reset_inputs();
   disable_inputs(false);
 

@@ -108,13 +108,11 @@ text {
   justify-content: center;
 }
 
-.c-output { overflow: hidden; }
-
 .c-output__head { margin-bottom: 16px; }
 
 .c-output__body {
+  border: none;
   height: calc(100% - 3 * 16px);
-  overflow: visible;
   width: 100%;
 }
 
