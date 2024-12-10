@@ -14,22 +14,6 @@ const DOMButtonReset = document.querySelector(".js-button-reset");
 
 const DOMVisualization = document.querySelector(".js-visualization");
 
-const rect = DOMVisualization.getBoundingClientRect();
-
-const start_visualization = (draw_weight_lb, height_in, vertical_angle_deg) => {
-  DOMVisualization.contentWindow.postMessage({
-    type: "start",
-    data: { draw_weight_lb, height_in, rect, vertical_angle_deg }
-  }, "http://localhost:3003");
-};
-
-const reset_visualization = () => {
-  DOMVisualization.contentWindow.postMessage({
-    type: "reset",
-    data: { rect }
-  }, "http://localhost:3003");
-};
-
 const reset_inputs = () => {
   DOMInputDrawWeight.value = localStorage.oas_draw_weight;
   DOMInputHeight.value = localStorage.oas_height;
@@ -45,13 +29,47 @@ const disable_inputs = (bool = true) => {
   }
 };
 
-localStorage.oas_draw_weight = localStorage.oas_draw_weight || VALUES.WEIGHT.DEFAULT;
-localStorage.oas_height = localStorage.oas_height || VALUES.HEIGHT.DEFAULT;
+const rect = DOMVisualization.getBoundingClientRect();
 
-DOMVisualization.addEventListener("load", () => {
-  reset_visualization();
-  reset_inputs();  
-});
+const start_visualization = (draw_weight_lb, height_in, vertical_angle_deg) => {
+  const { humidity, pressure, temperature } = JSON.parse(sessionStorage.oas_weather);
+
+  DOMVisualization.contentWindow.postMessage({
+    type: "start",
+    data: {
+      draw_weight_lb,
+      height_in,
+      humidity_rel: humidity / 100,
+      pressure_pa: pressure * 100,
+      rect,
+      temperature_k: temperature,
+      vertical_angle_deg
+    }
+  }, "http://localhost:3003");
+};
+
+const reset_visualization = () => {
+  DOMVisualization.contentWindow.postMessage({
+    type: "reset",
+    data: { rect }
+  }, "http://localhost:3003");
+};
+
+const update_weather = () => {
+  navigator.geolocation.getCurrentPosition(async (position) => {
+    const { coords: { latitude, longitude } } = position;
+
+    const data = await fetch(`/weather?coordinates=${[latitude,longitude]}`).then((res) => res.json());
+
+    sessionStorage.oas_weather = JSON.stringify(data);
+
+    setTimeout(update_weather, Date.now() - data.next_update);
+  }, () => {
+    alert("Location data is unavailable; weather data will be omitted from the simulation.");
+
+    sessionStorage.oas_weather = "";
+  });
+};
 
 DOMInputDrawWeight.addEventListener("change", ({ target: input }) => {
   input.value = bound_value("WEIGHT", input.value);
@@ -95,4 +113,14 @@ DOMButtonReset.addEventListener("click", (event) => {
   disable_inputs(false);
 
   DOMButtonReset.disabled = true;
+});
+
+DOMVisualization.addEventListener("load", () => {
+  localStorage.oas_draw_weight = localStorage.oas_draw_weight || VALUES.WEIGHT.DEFAULT;
+  localStorage.oas_height = localStorage.oas_height || VALUES.HEIGHT.DEFAULT;
+
+  reset_visualization();
+  reset_inputs();  
+
+  update_weather();
 });

@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/frostel-osu/olympic-archery-simulator#readme",
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "zeromq": "^6.1.2"
   },
   "type": "module"
 }
